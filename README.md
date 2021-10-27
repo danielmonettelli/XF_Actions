@@ -39,7 +39,7 @@ jobs:
       - name: Build
         run: |
           cd src
-          cd XF_Actions.Android
+          cd <project_name.Android>
           msbuild <csproj_file_path> /t:Rebuild /t:PackageForAndroid /p:Configuration=Debug
 
   Build_iOS:
@@ -70,6 +70,6 @@ jobs:
       - name: Build
         run: |
           cd src
-          cd XF_Actions.iOS
+          cd <project_name.iOS>
           msbuild <csproj_file_path> /p:Configuration=Debug /p:Platform=iPhoneSimulator /t:Rebuild
 ```
