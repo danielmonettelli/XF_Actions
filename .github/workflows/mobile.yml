@@ -1,9 +1,9 @@
-name: Mobile CI
+name: Xamarin Mobile CI
 
 on: [push, pull_request]
 
 jobs:
-  build_Android:
+  Build_Android:
     runs-on: macos-11
 
     steps:
@@ -28,7 +28,7 @@ jobs:
           cd XF_Actions.Android
           msbuild XF_Actions.Android.csproj /t:Rebuild /t:PackageForAndroid /p:Configuration=Debug
 
-  build_iOS:
+  Build_iOS:
     runs-on: macos-11
 
     steps:
