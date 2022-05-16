@@ -17,10 +17,10 @@ jobs:
         with:
           dotnet-version: "5.0.x"
 
-      - name: Install dependencies
-        run: |
-          cd src
-          nuget restore XF_Actions.sln
+      # - name: Install dependencies
+      #   run: |
+      #     cd src
+      #     nuget restore XF_Actions.sln
 
       - name: Build
         run: |
@@ -48,10 +48,10 @@ jobs:
         with:
           dotnet-version: "5.0.x"
 
-      - name: Install dependencies
-        run: |
-          cd src
-          nuget restore XF_Actions.sln
+      # - name: Install dependencies
+      #   run: |
+      #     cd src
+      #     nuget restore XF_Actions.sln
 
       - name: Build
         run: |
