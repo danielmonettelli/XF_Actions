@@ -26,6 +26,7 @@ jobs:
         run: |
           cd src
           cd XF_Actions.Android
+          dotnet restore
           msbuild XF_Actions.Android.csproj /t:Rebuild /t:PackageForAndroid /p:Configuration=Debug
 
   Build_iOS:
@@ -57,4 +58,5 @@ jobs:
         run: |
           cd src
           cd XF_Actions.iOS
+          dotnet restore
           msbuild XF_Actions.iOS.csproj /p:Configuration=Debug /p:Platform=iPhoneSimulator /t:Rebuild
