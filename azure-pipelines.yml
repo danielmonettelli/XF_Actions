@@ -1,0 +1,34 @@
+jobs:
+  - job: build_iOS
+    displayName: Build iOS
+    pool:
+      vmImage: 'macos-12'
+    steps:
+      # To manually select a Xamarin SDK version on the Microsoft-hosted macOS agent,
+      # configure this task with the *Mono* version that is associated with the
+      # Xamarin SDK version that you need, and set the "enabled" property to true.
+      # See https://go.microsoft.com/fwlink/?linkid=871629
+      - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_15
+        displayName: 'Select the Xamarin SDK version'
+        enabled: false
+      - task: MSBuild@1
+        displayName: Build iOS
+        inputs:
+          solution: '**/*.iOS.csproj'
+          configuration: 'Debug'
+          msbuildArguments: '/restore /t:Build /p:ContinuousIntegrationBuild=true /p:Deterministic=false'
+
+  - job: build_android
+    displayName: Build Android 
+    pool:
+      vmImage: 'macos-12'
+    steps:
+      - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_15
+        displayName: 'Select the Xamarin SDK version'
+        enabled: false
+      - task: MSBuild@1
+        displayName: Build Android
+        inputs:
+          solution: '**/*Droid*.csproj'
+          configuration: 'Debug'
+          msbuildArguments: '/restore /t:Build /p:ContinuousIntegrationBuild=true /p:Deterministic=false' 
