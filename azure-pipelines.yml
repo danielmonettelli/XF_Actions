@@ -14,9 +14,9 @@ jobs:
       - task: NuGetToolInstaller@0
         inputs:
           versionSpec: '5.x'
-      - task: NuGetCommand@2
-        inputs:
-          restoreSolution: '**/*.sln'
+      # - task: NuGetCommand@2
+      #   inputs:
+      #     restoreSolution: '**/*.sln'
       - task: XamariniOS@2
         inputs:
           solutionFile: '**/*.iOS.csproj'
