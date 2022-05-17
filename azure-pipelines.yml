@@ -11,12 +11,25 @@ jobs:
       - script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_15
         displayName: 'Select the Xamarin SDK version'
         enabled: false
-      - task: MSBuild@1
-        displayName: Build iOS
+      - task: NuGetToolInstaller@0
         inputs:
-          solution: '**/*.iOS.csproj'
-          configuration: 'Debug'
-          msbuildArguments: '/restore /t:Build /p:ContinuousIntegrationBuild=true /p:Deterministic=false'
+          versionSpec: '5.x'
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: '**/*.sln'
+      - task: XamariniOS@2
+        inputs:
+          solutionFile: '**/*.iOS.csproj'
+          configuration: 'Release'
+          buildForSimulator: true
+          packageApp: false
+
+      # - task: MSBuild@1
+      #   displayName: Build iOS
+      #   inputs:
+      #     solution: '**/*.iOS.csproj'
+      #     configuration: 'Debug'
+      #     msbuildArguments: '/restore /t:Build /p:ContinuousIntegrationBuild=true /p:Deterministic=false'
 
   - job: build_android
     displayName: Build Android 
